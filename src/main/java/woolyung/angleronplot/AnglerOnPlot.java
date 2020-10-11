@@ -2,6 +2,7 @@ package woolyung.angleronplot;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import woolyung.angleronplot.commands.FishCommand;
+import woolyung.angleronplot.events.FishingEvent;
 
 import java.io.File;
 
@@ -51,6 +52,8 @@ public final class AnglerOnPlot extends JavaPlugin {
         manager = new FishingManager(fishDatabase);
 
         getCommand("fish").setExecutor(new FishCommand(this));
+
+        getServer().getPluginManager().registerEvents(new FishingEvent(), this);
     }
 
     private boolean createPluginDirectory() {

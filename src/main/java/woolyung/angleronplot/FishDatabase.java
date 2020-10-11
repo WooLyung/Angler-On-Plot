@@ -1,12 +1,15 @@
 package woolyung.angleronplot;
 
 import org.bukkit.Bukkit;
+import woolyung.angleronplot.datas.FishData;
+import woolyung.angleronplot.datas.FishDataEx;
 import woolyung.main.MineplanetPlot;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class FishDatabase {
@@ -83,6 +86,182 @@ public class FishDatabase {
         catch (Exception e) {
             e.printStackTrace();
             return 100;
+        }
+    }
+
+    public ArrayList<FishData> getFishingables(float temp, float current, float pollution, int depth, String biome, String other) {
+        ArrayList<FishData> fishingables = new ArrayList<>();
+        ArrayList<String> names = new ArrayList<>();
+
+        try {
+            ResultSet result = statement.executeQuery("SELECT name FROM fish WHERE (" + temp + " >= min_temp AND " + temp + " <= max_temp AND " + pollution + " >= min_poll AND " + pollution + " <= max_poll AND " + current + " >= min_current AND " + current + " <= max_current AND " + (depth * 0.1f) + " >= max_size)");
+            while (result.next()) {
+                names.add(result.getString("name"));
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        for (String name : names) {
+            fishingables.add(getFishData(name));
+            FishDataEx subData = getSubspeciesData(name, biome, other);
+            if (subData != null) {
+                fishingables.add(subData);
+            }
+        }
+
+        return fishingables;
+    }
+
+    public ArrayList<FishData> getFishingables(float temp, float current, float pollution, int depth, String rank, String biome, String other) {
+        ArrayList<FishData> fishingables = new ArrayList<>();
+        ArrayList<String> names = new ArrayList<>();
+
+        try {
+            ResultSet result = statement.executeQuery("SELECT name FROM fish WHERE (" + temp + " >= min_temp AND " + temp + " <= max_temp AND " + pollution + " >= min_poll AND " + pollution + " <= max_poll AND " + current + " >= min_current AND " + current + " <= max_current AND " + (depth * 0.1f) + " >= max_size AND rank = '" + rank + "')");
+            while (result.next()) {
+                names.add(result.getString("name"));
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        for (String name : names) {
+            fishingables.add(getFishData(name));
+            FishDataEx subData = getSubspeciesData(name, biome, other);
+            if (subData != null) {
+                fishingables.add(subData);
+            }
+        }
+
+        return fishingables;
+    }
+
+    public ArrayList<FishDataEx> getSubspecieses(String species) {
+        ArrayList<FishDataEx> subspecieses = new ArrayList<>();
+        ArrayList<String> subspeciesNames = new ArrayList<>();
+
+        try {
+            ResultSet result = statement.executeQuery("SELECT * FROM subspecies WHERE (name = '" + species + "')");
+            while (result.next()) {
+                subspeciesNames.add(result.getString("name"));
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        for (String name : subspeciesNames) {
+            subspecieses.add(getSubspeciesData(name));
+        }
+
+        return subspecieses;
+    }
+
+    public FishDataEx getSubspeciesData(String species, String biome, String other) {
+        try {
+            FishDataEx data = new FishDataEx();
+
+            if (statement.executeQuery("SELECT count(*) FROM subspecies WHERE (species = '" + species + "' AND biome = '" + biome + "' AND other = '" + other + "')").getInt(1) == 0)
+                return null;
+
+            ResultSet result = statement.executeQuery("SELECT * FROM subspecies WHERE (species = '" + species + "' AND biome = '" + biome + "' AND other = '" + other + "')");
+            FishData data2 = getFishData(result.getString("species"));
+
+            data.max_current = data2.max_current;
+            data.min_current = data2.min_current;
+            data.max_poll = data2.max_poll;
+            data.min_poll = data2.min_poll;
+            data.max_temp = data2.max_temp;
+            data.min_temp = data2.min_temp;
+            data.max_size = data2.max_size;
+            data.min_size = data2.min_size;
+            data.rank = data2.rank;
+            data.species = species;
+            data.name = result.getString("name");
+            data.biome = biome;
+            data.other = other;
+
+            return data;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public FishDataEx getSubspeciesData(String name) {
+        try {
+            FishDataEx data = new FishDataEx();
+
+            if (statement.executeQuery("SELECT count(*0 FROM subspecies WHERE (name = '" + name + "')").getInt(1) == 0)
+                return null;
+
+            ResultSet result = statement.executeQuery("SELECT * FROM subspecies WHERE (name = '" + name + "')");
+            FishData data2 = getFishData(result.getString("species"));
+
+            data.max_current = data2.max_current;
+            data.min_current = data2.min_current;
+            data.max_poll = data2.max_poll;
+            data.min_poll = data2.min_poll;
+            data.max_temp = data2.max_temp;
+            data.min_temp = data2.min_temp;
+            data.max_size = data2.max_size;
+            data.min_size = data2.min_size;
+            data.rank = data2.rank;
+            data.species = data2.name;
+            data.name = name;
+            data.biome = result.getString("biome");
+            data.other = result.getString("other");
+
+            return data;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public FishData getFishData(String name) {
+        try {
+            FishData data = new FishData();
+
+            if (statement.executeQuery("SELECT count(*) FROM fish WHERE (name = '" + name + "')").getInt(1) == 0)
+                return null;
+
+            ResultSet result = statement.executeQuery("SELECT * FROM fish WHERE (name = '" + name + "')");
+            data.max_current = result.getFloat("max_current");
+            data.min_current = result.getFloat("min_current");
+            data.max_poll = result.getFloat("max_poll");
+            data.min_poll = result.getFloat("min_poll");
+            data.max_temp = result.getFloat("max_temp");
+            data.min_temp = result.getFloat("min_temp");
+            data.max_size = result.getFloat("max_size");
+            data.min_size = result.getFloat("min_size");
+            data.name = name;
+            if (result.getString("rank").compareTo("common") == 0) {
+                data.rank = FishData.Rank.COMMON;
+            }
+            else if (result.getString("rank").compareTo("special") == 0) {
+                data.rank = FishData.Rank.SPECIAL;
+            }
+            else if (result.getString("rank").compareTo("rare") == 0) {
+                data.rank = FishData.Rank.RARE;
+            }
+            else if (result.getString("rank").compareTo("legendary") == 0) {
+                data.rank = FishData.Rank.LEGENDARY;
+            }
+            else {
+                data.rank = FishData.Rank.VALUELESS;
+            }
+
+            return data;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }
