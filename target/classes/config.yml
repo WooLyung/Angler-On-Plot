@@ -1,0 +1,7 @@
+message:
+  command:
+    no_permission: "§b[Fish] §f명령어 권한이 없습니다."
+    no_arg: "§b[Fish] §f낚시 명령어를 보려면 /fish help 를 입력하세요."
+    wrong_command: "§b[Fish] §f잘못된 명령어입니다."
+  plot:
+    not_plot_world: "§b[Fish] §f그 곳은 플롯 월드가 아닙니다."

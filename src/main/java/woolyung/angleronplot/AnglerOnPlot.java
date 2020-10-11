@@ -1,6 +1,7 @@
 package woolyung.angleronplot;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import woolyung.angleronplot.commands.FishCommand;
 
 import java.io.File;
 
@@ -8,9 +9,14 @@ public final class AnglerOnPlot extends JavaPlugin {
 
     private static AnglerOnPlot instance;
     private FishDatabase fishDatabase;
+    private FishingManager manager;
 
     public static AnglerOnPlot getInstance() {
         return instance;
+    }
+
+    public FishingManager getManager() {
+        return manager;
     }
 
     public FishDatabase getFishDatabase() {
@@ -19,12 +25,13 @@ public final class AnglerOnPlot extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        instance = this;
+
         if (createPluginDirectory());{
             createDataDirectory();
         }
 
         createConfig();
-
         init();
     }
 
@@ -41,6 +48,9 @@ public final class AnglerOnPlot extends JavaPlugin {
 
     private void init() {
         fishDatabase = new FishDatabase(this);
+        manager = new FishingManager(fishDatabase);
+
+        getCommand("fish").setExecutor(new FishCommand(this));
     }
 
     private boolean createPluginDirectory() {

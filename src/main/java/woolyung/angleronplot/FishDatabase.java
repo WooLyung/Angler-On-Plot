@@ -5,7 +5,9 @@ import woolyung.main.MineplanetPlot;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Random;
 
 public class FishDatabase {
     private Connection connection;
@@ -20,7 +22,7 @@ public class FishDatabase {
     }
 
     private void sqliteSetup() {
-        path = MineplanetPlot.instance.getDataFolder() + "/datas/";
+        path = plugin.getDataFolder() + "/datas/";
         file = "fish.db";
 
         try {
@@ -52,7 +54,7 @@ public class FishDatabase {
 
             // 어류 데이터 데이터베이스
             if (statement.executeQuery("SELECT count(*) FROM sqlite_master WHERE Name = 'fish'").getInt(1) == 0)
-                statement.execute("CREATE TABLE fish (name TEXT PRIMARY KEY, power INTEGER, rank TEXT, min_size REAL, max_size REAL, min_temp REAL, max_temp REAL, min_cureent REAL, max_current REAL, min_poll REAL, max_poll REAL)");
+                statement.execute("CREATE TABLE fish (name TEXT PRIMARY KEY, power INTEGER, rank TEXT, min_size REAL, max_size REAL, min_temp REAL, max_temp REAL, min_current REAL, max_current REAL, min_poll REAL, max_poll REAL)");
 
             // 아종 데이터 데이터베이스
             if (statement.executeQuery("SELECT count(*) FROM sqlite_master WHERE Name = 'subspecies'").getInt(1) == 0)
@@ -63,6 +65,24 @@ public class FishDatabase {
             Bukkit.getLogger().info("데이터베이스 예외가 발생했습니다. 플러그인을 비활성화합니다.");
             plugin.getPluginLoader().disablePlugin(plugin);
             return;
+        }
+    }
+
+    public float getPollution(int x, int z) {
+        try {
+            if (statement.executeQuery("SELECT count(*) FROM plot_pollution WHERE plot = '" + x + ":" + z + "'").getInt(1) == 0) {
+                float pollution = Math.round(new Random().nextFloat() * 10000) * 0.01f;
+                statement.execute("INSERT INTO plot_pollution VALUES('" + x + ":" + z + "', " + pollution + ")");
+                return pollution;
+            }
+            else {
+                ResultSet result = statement.executeQuery("SELECT * FROM plot_pollution WHERE plot = '" + x + ":" + z + "'");
+                return result.getInt("pollution");
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return 100;
         }
     }
 }
