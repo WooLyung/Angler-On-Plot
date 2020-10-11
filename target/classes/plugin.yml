@@ -1,0 +1,6 @@
+name: AnglerOnPlot
+version: 1.0.1
+main: woolyung.angleronplot.AnglerOnPlot
+authors: [WooLyung]
+description: Fishing Plugin For Mineplanet Server.
+website: https://github.com/WooLyung/
