@@ -38,7 +38,7 @@ public class FishingManager {
 
         while (loc.getBlockY() > 0 && loc.getBlock().getType() == Material.WATER) {
             depth++;
-            loc = loc.subtract(0, 1, 0);
+            loc = loc.add(0, -1, 0);
         }
 
         return depth;

@@ -94,7 +94,7 @@ public class FishDatabase {
         ArrayList<String> names = new ArrayList<>();
 
         try {
-            ResultSet result = statement.executeQuery("SELECT name FROM fish WHERE (" + temp + " >= min_temp AND " + temp + " <= max_temp AND " + pollution + " >= min_poll AND " + pollution + " <= max_poll AND " + current + " >= min_current AND " + current + " <= max_current AND " + (depth * 0.1f) + " >= max_size)");
+            ResultSet result = statement.executeQuery("SELECT name FROM fish WHERE (" + temp + " >= min_temp AND " + temp + " <= max_temp AND " + pollution + " >= min_poll AND " + pollution + " <= max_poll AND " + current + " >= min_current AND " + current + " <= max_current AND " + (depth * 10) + " >= max_size)");
             while (result.next()) {
                 names.add(result.getString("name"));
             }
@@ -119,7 +119,7 @@ public class FishDatabase {
         ArrayList<String> names = new ArrayList<>();
 
         try {
-            ResultSet result = statement.executeQuery("SELECT name FROM fish WHERE (" + temp + " >= min_temp AND " + temp + " <= max_temp AND " + pollution + " >= min_poll AND " + pollution + " <= max_poll AND " + current + " >= min_current AND " + current + " <= max_current AND " + (depth * 0.1f) + " >= max_size AND rank = '" + rank + "')");
+            ResultSet result = statement.executeQuery("SELECT name FROM fish WHERE (" + temp + " >= min_temp AND " + temp + " <= max_temp AND " + pollution + " >= min_poll AND " + pollution + " <= max_poll AND " + current + " >= min_current AND " + current + " <= max_current AND " + (depth * 10) + " >= max_size AND rank = '" + rank + "')");
             while (result.next()) {
                 names.add(result.getString("name"));
             }
@@ -168,6 +168,7 @@ public class FishDatabase {
                 return null;
 
             ResultSet result = statement.executeQuery("SELECT * FROM subspecies WHERE (species = '" + species + "' AND biome = '" + biome + "' AND other = '" + other + "')");
+            data.name = result.getString("name");
             FishData data2 = getFishData(result.getString("species"));
 
             data.max_current = data2.max_current;
@@ -180,7 +181,6 @@ public class FishDatabase {
             data.min_size = data2.min_size;
             data.rank = data2.rank;
             data.species = species;
-            data.name = result.getString("name");
             data.biome = biome;
             data.other = other;
 
