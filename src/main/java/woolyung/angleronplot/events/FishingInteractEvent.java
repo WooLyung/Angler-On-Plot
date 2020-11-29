@@ -22,6 +22,7 @@ public class FishingInteractEvent implements Listener {
         player.sendMessage("길이:" + fish.length + ", 수컷:" + fish.isMale + ", 이름:" + fish.name + ", 등급:" + fish.rank + ", 결과:" + event.getResult());
     }
 
+    @EventHandler
     public void onClickEvent(PlayerInteractEvent event) {
         if (event.getPlayer().getInventory().getItemInMainHand().getType() == Material.FISHING_ROD) {
             HashMap<Player, FishingThread> threads = AnglerOnPlot.getInstance().getPlayerThread();
@@ -31,9 +32,17 @@ public class FishingInteractEvent implements Listener {
                 if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
                     event.setCancelled(true);
                     if (thread.dir == 1) thread.gage++;
+                    else {
+                        if (thread.ok >= 1) thread.ok--;
+                        else thread.gage--;
+                    }
                 } else if (event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK) {
                     event.setCancelled(true);
                     if (thread.dir == 0) thread.gage++;
+                    else {
+                        if (thread.ok >= 1) thread.ok--;
+                        else thread.gage--;
+                    }
                 }
             }
         }

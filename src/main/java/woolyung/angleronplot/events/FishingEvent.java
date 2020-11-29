@@ -36,10 +36,17 @@ public class FishingEvent implements Listener {
             String rank = AnglerOnPlot.getInstance().getManager().getRandomRankString();
 
             ArrayList<FishData> fishingables = AnglerOnPlot.getInstance().getFishDatabase().getFishingables(plotData.temp, plotData.current, plotData.pollution, depth, rank, plotDataEx.biome, "none");
-            FishData fishData = fishingables.get(new Random().nextInt(fishingables.size()));
-            FishingThread thread = new FishingThread(player, fishData);
-            AnglerOnPlot.getInstance().getPlayerThread().put(player, thread);
-            thread.start();
+            if (fishingables != null) {
+                if (fishingables.size() == 0) {
+                    // 아무것도 낚이지 않음
+                }
+                else {
+                    FishData fishData = fishingables.get(new Random().nextInt(fishingables.size()));
+                    FishingThread thread = new FishingThread(player, fishData);
+                    AnglerOnPlot.getInstance().getPlayerThread().put(player, thread);
+                    thread.start();
+                }
+            }
         }
     }
 }

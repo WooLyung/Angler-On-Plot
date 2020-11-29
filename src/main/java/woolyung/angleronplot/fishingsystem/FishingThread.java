@@ -7,7 +7,6 @@ import woolyung.angleronplot.datas.CaughtFishData;
 import woolyung.angleronplot.datas.FishData;
 
 import java.util.Random;
-import java.util.concurrent.ExecutionException;
 
 public class FishingThread extends Thread {
     private AnglerOnPlot plugin;
@@ -17,6 +16,7 @@ public class FishingThread extends Thread {
     private CaughtFishData caughtFishData;
     public int gage = 0;
     public int dir = 0;
+    public int ok = 6;
     private double time = 0;
     private double nextTime = 0;
     private double powerTerm = 0;
@@ -61,6 +61,7 @@ public class FishingThread extends Thread {
                         time = 0;
                         dir = dir == 1 ? 0 : 1;
                         nextTime = new Random().nextDouble() + 1;
+                        ok = 6;
                     }
 
                     // 성공
@@ -73,7 +74,10 @@ public class FishingThread extends Thread {
                         isFinish = true;
                     }
 
-                    player.sendMessage("방향:" + dir + ", 게이지" + gage);
+                    if (dir == 1)
+                        player.sendMessage("오른쪽" + ", 게이지" + gage);
+                    else
+                        player.sendMessage("왼쪽" + ", 게이지" + gage);
                 });
 
                 // 슬립
@@ -90,16 +94,16 @@ public class FishingThread extends Thread {
     }
 
     private static double getPowerTerm(int power) {
-        if (power == 1) return 0.5;
-        if (power == 2) return 0.4;
-        if (power == 3) return 0.35;
-        if (power == 4) return 0.3;
-        if (power == 5) return 0.25;
-        if (power == 6) return 0.2;
-        if (power == 7) return 0.16;
-        if (power == 8) return 0.13;
-        if (power == 9) return 0.1;
-        if (power == 10) return 0.05;
+        if (power == 1) return 0.6;
+        if (power == 2) return 0.5;
+        if (power == 3) return 0.45;
+        if (power == 4) return 0.4;
+        if (power == 5) return 0.35;
+        if (power == 6) return 0.3;
+        if (power == 7) return 0.25;
+        if (power == 8) return 0.2;
+        if (power == 9) return 0.15;
+        if (power == 10) return 0.1;
         return 0.5;
     }
 }
