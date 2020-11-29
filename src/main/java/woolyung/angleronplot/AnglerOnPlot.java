@@ -1,16 +1,22 @@
 package woolyung.angleronplot;
 
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import woolyung.angleronplot.commands.FishCommand;
+import woolyung.angleronplot.events.FishingInteractEvent;
 import woolyung.angleronplot.events.FishingEvent;
+import woolyung.angleronplot.events.JoinExitEvent;
+import woolyung.angleronplot.fishingsystem.FishingThread;
 
 import java.io.File;
+import java.util.HashMap;
 
 public final class AnglerOnPlot extends JavaPlugin {
 
     private static AnglerOnPlot instance;
     private FishDatabase fishDatabase;
     private FishingManager manager;
+    private HashMap<Player, FishingThread> playerThread = new HashMap<>();
 
     public static AnglerOnPlot getInstance() {
         return instance;
@@ -22,6 +28,10 @@ public final class AnglerOnPlot extends JavaPlugin {
 
     public FishDatabase getFishDatabase() {
         return fishDatabase;
+    }
+
+    public HashMap<Player, FishingThread> getPlayerThread() {
+        return playerThread;
     }
 
     @Override
@@ -54,6 +64,8 @@ public final class AnglerOnPlot extends JavaPlugin {
         getCommand("fish").setExecutor(new FishCommand(this));
 
         getServer().getPluginManager().registerEvents(new FishingEvent(), this);
+        getServer().getPluginManager().registerEvents(new JoinExitEvent(), this);
+        getServer().getPluginManager().registerEvents(new FishingInteractEvent(), this);
     }
 
     private boolean createPluginDirectory() {

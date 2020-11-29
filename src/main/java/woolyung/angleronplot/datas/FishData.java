@@ -11,6 +11,7 @@ public class FishData {
 
     public String name;
     public Rank rank;
+    public int power;
     public float min_size;
     public float max_size;
     public float min_temp;

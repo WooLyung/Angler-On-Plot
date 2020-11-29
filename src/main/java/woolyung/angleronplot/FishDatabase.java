@@ -213,6 +213,7 @@ public class FishDatabase {
             data.rank = data2.rank;
             data.species = data2.name;
             data.name = name;
+            data.power = data2.power;
             data.biome = result.getString("biome");
             data.other = result.getString("other");
 
@@ -240,6 +241,7 @@ public class FishDatabase {
             data.min_temp = result.getFloat("min_temp");
             data.max_size = result.getFloat("max_size");
             data.min_size = result.getFloat("min_size");
+            data.power = result.getInt("power");
             data.name = name;
             if (result.getString("rank").compareTo("common") == 0) {
                 data.rank = FishData.Rank.COMMON;

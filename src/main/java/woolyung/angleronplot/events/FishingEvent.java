@@ -8,11 +8,13 @@ import org.bukkit.event.player.PlayerFishEvent;
 import woolyung.angleronplot.AnglerOnPlot;
 import woolyung.angleronplot.datas.FishData;
 import woolyung.angleronplot.datas.PlotData;
+import woolyung.angleronplot.fishingsystem.FishingThread;
 import woolyung.main.MineplanetPlot;
 import woolyung.main.plot.Data.PlotDataEx;
 import woolyung.main.plot.Data.PlotLocData;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class FishingEvent implements Listener {
     @EventHandler
@@ -24,7 +26,8 @@ public class FishingEvent implements Listener {
             return;
 
         if (event.getState() == PlayerFishEvent.State.CAUGHT_FISH) { // 물고기가 낚임
-            // event.setCancelled(true);
+            event.setCancelled(true);
+            event.getHook().remove();
 
             PlotLocData locData = MineplanetPlot.instance.getPlotWorld().getPlotLocData(hook.getLocation().getBlockX(), hook.getLocation().getBlockZ());
             PlotDataEx plotDataEx = MineplanetPlot.instance.getPlotDatabase().getPlotDataEx(locData.plotLocX, locData.plotLocZ);
@@ -32,12 +35,11 @@ public class FishingEvent implements Listener {
             int depth = AnglerOnPlot.getInstance().getManager().getDepth(hook.getLocation());
             String rank = AnglerOnPlot.getInstance().getManager().getRandomRankString();
 
-            player.sendMessage(depth + ", " + plotData.pollution + ", " + plotData.current + ", " + plotData.temp + ", " + rank);
-
             ArrayList<FishData> fishingables = AnglerOnPlot.getInstance().getFishDatabase().getFishingables(plotData.temp, plotData.current, plotData.pollution, depth, rank, plotDataEx.biome, "none");
-            for (FishData data : fishingables) {
-                player.sendMessage(data.name);
-            }
+            FishData fishData = fishingables.get(new Random().nextInt(fishingables.size()));
+            FishingThread thread = new FishingThread(player, fishData);
+            AnglerOnPlot.getInstance().getPlayerThread().put(player, thread);
+            thread.start();
         }
     }
 }
