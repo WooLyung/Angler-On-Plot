@@ -97,16 +97,16 @@ public class FishingThread extends Thread {
     }
 
     private static double getPowerTerm(int power) {
-        if (power == 1) return 0.45;
-        if (power == 2) return 0.4;
-        if (power == 3) return 0.35;
-        if (power == 4) return 0.3;
-        if (power == 5) return 0.25;
-        if (power == 6) return 0.2;
-        if (power == 7) return 0.16;
-        if (power == 8) return 0.13;
-        if (power == 9) return 0.1;
-        if (power == 10) return 0.05;
-        return 0.05;
+        if (power == 1) return 0.5;
+        if (power == 2) return 0.45;
+        if (power == 3) return 0.4;
+        if (power == 4) return 0.35;
+        if (power == 5) return 0.3;
+        if (power == 6) return 0.25;
+        if (power == 7) return 0.2;
+        if (power == 8) return 0.16;
+        if (power == 9) return 0.13;
+        if (power == 10) return 0.1;
+        return 0.1;
     }
 }

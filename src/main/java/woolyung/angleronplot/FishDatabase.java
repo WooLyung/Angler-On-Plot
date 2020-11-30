@@ -62,12 +62,31 @@ public class FishDatabase {
             // 아종 데이터 데이터베이스
             if (statement.executeQuery("SELECT count(*) FROM sqlite_master WHERE Name = 'subspecies'").getInt(1) == 0)
                 statement.execute("CREATE TABLE subspecies (species TEXT, name TEXT, biome TEXT, other TEXT, FOREIGN KEY(species) REFERENCES fish(name) ON DELETE CASCADE)");
+
+            // 도감 데이터베이스
+            if (statement.executeQuery("SELECT count(*) FROM sqlite_master WHERE Name = 'pedia'").getInt(1) == 0)
+                statement.execute("CREATE TABLE pedia (species TEXT, player TEXT)");
         }
         catch (Exception e) {
             e.printStackTrace();
             Bukkit.getLogger().info("데이터베이스 예외가 발생했습니다. 플러그인을 비활성화합니다.");
             plugin.getPluginLoader().disablePlugin(plugin);
             return;
+        }
+    }
+
+    public boolean addPediaData(String species, String uuid) {
+        try {
+            if (statement.executeQuery("SELECT count(*) FROM pedia WHERE species = '" + species + "' AND player = '" + uuid + "'").getInt(1) == 0) {
+                statement.execute("INSERT INTO pedia VALUES('" + species + "', '" + uuid + "')");
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        catch (Exception e) {
+            return false;
         }
     }
 
@@ -179,6 +198,7 @@ public class FishDatabase {
             data.min_temp = data2.min_temp;
             data.max_size = data2.max_size;
             data.min_size = data2.min_size;
+            data.power = data2.power;
             data.rank = data2.rank;
             data.species = species;
             data.biome = biome;

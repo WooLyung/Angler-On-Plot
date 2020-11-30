@@ -171,11 +171,11 @@ public class FishingManager {
         if (rank.compareTo("legendary") == 0)
             return 0.01f;
         else if (rank.compareTo("rare") == 0)
-            return 0.1f;
+            return 0.2f;
         else if (rank.compareTo("special") == 0)
-            return 0.4f;
+            return 0.6f;
         else if (rank.compareTo("common") == 0)
-            return 0.9f;
+            return 0.95f;
         else
             return 1;
     }
@@ -220,7 +220,7 @@ public class FishingManager {
             meta.setDisplayName(getRankColor(fish.rank) + fish.name + " §d♀");
 
         ArrayList<String> lore = new ArrayList<>();
-        lore.add("§b길이 §f" + fish.length + "cm");
+        lore.add(String.format("§b길이 §f%.2fcm", fish.length));
         lore.add("§b낚은이 §f" + player.getName());
         meta.setLore(lore);
         item.setItemMeta(meta);

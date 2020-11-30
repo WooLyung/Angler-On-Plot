@@ -43,15 +43,17 @@ public class FishingInteractEvent implements Listener {
                 plugin.getServer().broadcastMessage(String.format(plugin.getConfig().getString("message.fishing.fail.broadcast"), player.getName(), name));
         }
         else if (event.getResult() == FishingFinishEvent.Result.SUCCESS) {
-            player.getInventory().addItem(manager.getFishItem(player, fish));
-            // 도감 등록
-
             String name = manager.getRankColor(fish.rank) + fish.name;
+
+            player.getInventory().addItem(manager.getFishItem(player, fish));
             player.sendMessage(String.format(plugin.getConfig().getString("message.fishing.rill_in.success"), fish.length, name));
             player.getWorld().playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 0.3f, 1);
 
             if (fish.rank == FishData.Rank.LEGENDARY || fish.rank == FishData.Rank.RARE)
                 plugin.getServer().broadcastMessage(String.format(plugin.getConfig().getString("message.fishing.rill_in.success_broadcast"), player.getName(), fish.length, name));
+
+            if (plugin.getFishDatabase().addPediaData(fish.name, player.getUniqueId().toString()))
+                player.sendMessage(String.format(plugin.getConfig().getString("message.fishing.rill_in.pedia"), name));
         }
     }
 
