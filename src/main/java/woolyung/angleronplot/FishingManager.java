@@ -4,10 +4,14 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import woolyung.angleronplot.datas.CaughtFishData;
 import woolyung.angleronplot.datas.FishData;
 import woolyung.angleronplot.datas.PlotData;
 import woolyung.main.MineplanetPlot;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class FishingManager {
@@ -144,5 +148,29 @@ public class FishingManager {
 
     public void changeDir(Player player, int dir) {
         player.getWorld().playSound(player.getLocation(), Sound.AMBIENT_UNDERWATER_ENTER, 0.3f, 0.8f);
+    }
+
+    public ItemStack getFishItem(Player player, CaughtFishData fish) {
+        ItemStack item;
+        if (fish.rank == FishData.Rank.LEGENDARY) item = new ItemStack(Material.TROPICAL_FISH);
+        else if (fish.rank == FishData.Rank.RARE) item = new ItemStack(Material.SALMON);
+        else if (fish.rank == FishData.Rank.SPECIAL) item = new ItemStack(Material.COOKED_SALMON);
+        else if (fish.rank == FishData.Rank.COMMON) item = new ItemStack(Material.COD);
+        else item = new ItemStack(Material.COOKED_COD);
+        item.setAmount(1);
+
+        ItemMeta meta = item.getItemMeta();
+        if (fish.isMale)
+            meta.setDisplayName(getRankColor(fish.rank) + fish.name + "§9♂");
+        else
+            meta.setDisplayName(getRankColor(fish.rank) + fish.name + "§d♀");
+
+        ArrayList<String> lore = new ArrayList<>();
+        lore.add("§b길이 §f" + fish.length + "cm");
+        lore.add("§b낚은이 §f" + player.getName());
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
     }
 }

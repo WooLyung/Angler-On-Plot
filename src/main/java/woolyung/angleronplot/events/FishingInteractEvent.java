@@ -43,7 +43,7 @@ public class FishingInteractEvent implements Listener {
                 plugin.getServer().broadcastMessage(String.format(plugin.getConfig().getString("message.fishing.fail.broadcast"), player.getName(), name));
         }
         else if (event.getResult() == FishingFinishEvent.Result.SUCCESS) {
-            // 아이템 지급
+            player.getInventory().addItem(manager.getFishItem(player, fish));
             // 도감 등록
 
             String name = manager.getRankColor(fish.rank) + fish.name;
