@@ -7,19 +7,48 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import woolyung.angleronplot.AnglerOnPlot;
+import woolyung.angleronplot.FishingManager;
 import woolyung.angleronplot.datas.CaughtFishData;
+import woolyung.angleronplot.datas.FishData;
 import woolyung.angleronplot.fishingsystem.FishingFinishEvent;
 import woolyung.angleronplot.fishingsystem.FishingThread;
 
 import java.util.HashMap;
 
 public class FishingInteractEvent implements Listener {
+    FishingManager manager;
+
+    public FishingInteractEvent() {
+        manager = AnglerOnPlot.getInstance().getManager();
+    }
+
     @EventHandler
     public void onPlayerFishEvent(FishingFinishEvent event) {
+        AnglerOnPlot plugin = AnglerOnPlot.getInstance();
+
         Player player = event.getPlayer();
         CaughtFishData fish = event.getFish();
 
-        player.sendMessage("길이:" + fish.length + ", 수컷:" + fish.isMale + ", 이름:" + fish.name + ", 등급:" + fish.rank + ", 결과:" + event.getResult());
+        HashMap<Player, FishingThread> threads = AnglerOnPlot.getInstance().getPlayerThread();
+        if (threads.containsKey(player)) threads.remove(player);
+
+        if (event.getResult() == FishingFinishEvent.Result.FAIL) {
+            String name = manager.getRankColor(fish.rank) + fish.name;
+            player.sendMessage(String.format(plugin.getConfig().getString("message.fishing.fail.player"), name));
+
+            if (fish.rank == FishData.Rank.LEGENDARY || fish.rank == FishData.Rank.RARE)
+                plugin.getServer().broadcastMessage(String.format(plugin.getConfig().getString("message.fishing.fail.broadcast"), player.getName(), name));
+        }
+        else if (event.getResult() == FishingFinishEvent.Result.SUCCESS) {
+            // 아이템 지급
+            // 도감 등록
+
+            String name = manager.getRankColor(fish.rank) + fish.name;
+            player.sendMessage(String.format(plugin.getConfig().getString("message.fishing.rill_in.success"), fish.length, name));
+
+            if (fish.rank == FishData.Rank.LEGENDARY || fish.rank == FishData.Rank.RARE)
+                plugin.getServer().broadcastMessage(String.format(plugin.getConfig().getString("message.fishing.rill_in.success_broadcast"), player.getName(), fish.length, name));
+        }
     }
 
     @EventHandler
@@ -31,18 +60,24 @@ public class FishingInteractEvent implements Listener {
 
                 if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
                     event.setCancelled(true);
-                    if (thread.dir == 1) thread.gage++;
+                    if (thread.dir == 1) {
+                        thread.gage++;
+                    }
                     else {
                         if (thread.ok >= 1) thread.ok--;
                         else thread.gage--;
                     }
+                    manager.sendFishingTitle(event.getPlayer(), thread.dir, thread.gage);
                 } else if (event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK) {
                     event.setCancelled(true);
-                    if (thread.dir == 0) thread.gage++;
+                    if (thread.dir == 0) {
+                        thread.gage++;
+                    }
                     else {
                         if (thread.ok >= 1) thread.ok--;
                         else thread.gage--;
                     }
+                    manager.sendFishingTitle(event.getPlayer(), thread.dir, thread.gage);
                 }
             }
         }

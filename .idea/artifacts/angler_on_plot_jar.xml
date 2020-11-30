@@ -3,9 +3,6 @@
     <output-path>$PROJECT_DIR$/out/artifacts/angler_on_plot_jar</output-path>
     <root id="archive" name="angler-on-plot.jar">
       <element id="module-output" name="angler on plot" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/library/json-simple-1.1.1.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/library/mineplanet-plot.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/library/sqlite-jdbc-3.32.3.2.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

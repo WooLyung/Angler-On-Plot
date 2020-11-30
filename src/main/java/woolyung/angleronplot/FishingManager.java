@@ -2,6 +2,8 @@ package woolyung.angleronplot;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.entity.Player;
 import woolyung.angleronplot.datas.FishData;
 import woolyung.angleronplot.datas.PlotData;
 import woolyung.main.MineplanetPlot;
@@ -79,5 +81,68 @@ public class FishingManager {
             return "common";
         else
             return "valueless";
+    }
+
+    public String getRankColor(String rank) {
+        if (rank.compareTo("legendary") == 0)
+            return "§5";
+        else if (rank.compareTo("rare") == 0)
+            return "§b";
+        else if (rank.compareTo("special") == 0)
+            return "§e";
+        else if (rank.compareTo("common") == 0)
+            return "§f";
+        else
+            return "§7";
+    }
+
+    public String getRankColor(FishData.Rank rank) {
+        if (rank == FishData.Rank.LEGENDARY)
+            return "§5";
+        else if (rank == FishData.Rank.RARE)
+            return "§b";
+        else if (rank == FishData.Rank.SPECIAL)
+            return "§e";
+        else if (rank == FishData.Rank.COMMON)
+            return "§f";
+        else
+            return "§7";
+    }
+
+    public float getFishingChance(String rank) {
+        if (rank.compareTo("legendary") == 0)
+            return 0.01f;
+        else if (rank.compareTo("rare") == 0)
+            return 0.1f;
+        else if (rank.compareTo("special") == 0)
+            return 0.4f;
+        else if (rank.compareTo("common") == 0)
+            return 0.9f;
+        else
+            return 1;
+    }
+
+    public void sendFishingTitle(Player player, int dir, int gage) {
+        gage = (gage / 2) + 10;
+        if (gage <= 0) gage = 0;
+        if (gage >= 20) gage = 20;
+
+        String bar = "§b";
+        for (int i = 0; i < gage; i++)
+            bar += "|";
+        bar += "§f";
+        for (int i = 0; i < 20 - gage; i++)
+            bar += "|";
+
+        if (dir == 0)
+            player.sendTitle("§1§l<§9§l<§b§l< §f왼쪽! §b§l<§9§l<§1§l<", "§3§l|" + bar + "§3§l|", 0, 15, 5);
+        else
+            player.sendTitle("§1§l>§9§l>§b§l> §f오른쪽! §b§l>§9§l>§1§l>", "§3§l|" + bar + "§3§l|", 0, 15, 5);
+
+        player.getWorld().playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 0.5f, gage * 0.075f + 0.5f);
+    }
+
+    public void changeDir(Player player, int dir) {
+        player.getWorld().playSound(player.getLocation(), Sound.AMBIENT_UNDERWATER_ENTER, 0.5f, 0.8f);
     }
 }

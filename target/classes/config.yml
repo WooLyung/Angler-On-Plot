@@ -1,13 +1,18 @@
 message:
   fishing:
-    cought:
+    caught:
       no_fish: "§b[Fish] §f아무것도 낚이지 않았습니다."
       rill_in_default: "§b[Fish] §f입질이 왔습니다! 방향에 맞춰 마우스를 연타해 릴을 감으세요!"
       rill_in_heavy: "§b[Fish] §f무거운 입질입니다! 방향에 맞춰 마우스를 연타해 릴을 감으세요!"
       rill_in_special: "§b[Fish] §f느낌이 좋은 입질입니다! 방향에 맞춰 마우스를 연타해 릴을 감으세요!"
+      miss: "§b[Fish] §f당신은 %s§f을(를) 놓쳤습니다."
+      miss_broadcast: "§b[Fish] §f%s님이 %s§f을(를) 놓쳤습니다."
     rill_in:
       success: "§b[Fish] §f당신은 %.2fcm %s§f을(를) 낚았습니다!"
       success_broadcast: "§b[Fish] §f%s님이 %.2fcm %s§f을(를) 낚았습니다!"
+    fail:
+      player: "§b[Fish] §f당신은 %s§f을(를) 낚는 데에 실패했습니다."
+      broadcast: "§b[Fish] §f%s님이 %s§f을(를) 낚는 데에 실패했습니다."
   command:
     no_permission: "§b[Fish] §f명령어 권한이 없습니다."
     no_arg: "§b[Fish] §f낚시 명령어를 보려면 /fish help 를 입력하세요."

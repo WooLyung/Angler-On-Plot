@@ -3,6 +3,7 @@ package woolyung.angleronplot.fishingsystem;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import woolyung.angleronplot.AnglerOnPlot;
+import woolyung.angleronplot.FishingManager;
 import woolyung.angleronplot.datas.CaughtFishData;
 import woolyung.angleronplot.datas.FishData;
 
@@ -10,6 +11,7 @@ import java.util.Random;
 
 public class FishingThread extends Thread {
     private AnglerOnPlot plugin;
+    private FishingManager manager;
     private boolean isFinish = false;
     private Player player;
     private FishData fish;
@@ -30,6 +32,7 @@ public class FishingThread extends Thread {
         this.fish = fish;
 
         plugin = AnglerOnPlot.getInstance();
+        manager = plugin.getManager();
         powerTerm = getPowerTerm(fish.power);
         nextTime = new Random().nextDouble() + 1;
         CaughtFishInit();
@@ -45,6 +48,7 @@ public class FishingThread extends Thread {
         float max = fish.max_size;
         float bet = max - min;
         caughtFishData.length = (new Random().nextFloat() * bet) + min;
+        caughtFishData.length = Math.round(caughtFishData.length * 100) * 0.01f;
     }
 
     @Override
@@ -62,6 +66,7 @@ public class FishingThread extends Thread {
                         dir = dir == 1 ? 0 : 1;
                         nextTime = new Random().nextDouble() + 1;
                         ok = 6;
+                        manager.changeDir(player, dir);
                     }
 
                     // 성공
@@ -74,10 +79,7 @@ public class FishingThread extends Thread {
                         isFinish = true;
                     }
 
-                    if (dir == 1)
-                        player.sendMessage("오른쪽" + ", 게이지" + gage);
-                    else
-                        player.sendMessage("왼쪽" + ", 게이지" + gage);
+                    manager.sendFishingTitle(player, dir, gage);
                 });
 
                 // 슬립
