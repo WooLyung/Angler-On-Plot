@@ -135,14 +135,14 @@ public class FishingManager {
             bar += "|";
 
         if (dir == 0)
-            player.sendTitle("§1§l<§9§l<§b§l< §f왼쪽! §b§l<§9§l<§1§l<", "§3§l|" + bar + "§3§l|", 0, 15, 5);
+            player.sendTitle("§1§l<§9§l<§b§l< §f왼쪽 §b§l<§9§l<§1§l<", "§3§l|" + bar + "§3§l|", 0, 15, 5);
         else
-            player.sendTitle("§1§l>§9§l>§b§l> §f오른쪽! §b§l>§9§l>§1§l>", "§3§l|" + bar + "§3§l|", 0, 15, 5);
+            player.sendTitle("§1§l>§9§l>§b§l> §f오른쪽 §b§l>§9§l>§1§l>", "§3§l|" + bar + "§3§l|", 0, 15, 5);
 
-        player.getWorld().playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 0.5f, gage * 0.075f + 0.5f);
+        player.getWorld().playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 0.1f, gage * 0.075f + 0.5f);
     }
 
     public void changeDir(Player player, int dir) {
-        player.getWorld().playSound(player.getLocation(), Sound.AMBIENT_UNDERWATER_ENTER, 0.5f, 0.8f);
+        player.getWorld().playSound(player.getLocation(), Sound.AMBIENT_UNDERWATER_ENTER, 0.3f, 0.8f);
     }
 }

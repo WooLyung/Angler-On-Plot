@@ -18,7 +18,6 @@ public class FishingThread extends Thread {
     private CaughtFishData caughtFishData;
     public int gage = 0;
     public int dir = 0;
-    public int ok = 6;
     private double time = 0;
     private double nextTime = 0;
     private double powerTerm = 0;
@@ -65,7 +64,6 @@ public class FishingThread extends Thread {
                         time = 0;
                         dir = dir == 1 ? 0 : 1;
                         nextTime = new Random().nextDouble() + 1;
-                        ok = 6;
                         manager.changeDir(player, dir);
                     }
 
@@ -89,6 +87,9 @@ public class FishingThread extends Thread {
                 e.printStackTrace();
                 isFinish = true;
             }
+
+            if (isFinish)
+                break;
         }
 
         if (plugin.getPlayerThread().containsKey(player))
