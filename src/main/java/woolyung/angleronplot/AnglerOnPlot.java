@@ -7,6 +7,7 @@ import woolyung.angleronplot.events.FishingInteractEvent;
 import woolyung.angleronplot.events.FishingEvent;
 import woolyung.angleronplot.events.JoinExitEvent;
 import woolyung.angleronplot.fishingsystem.FishingThread;
+import woolyung.angleronplot.gui.PediaGUI;
 
 import java.io.File;
 import java.util.HashMap;
@@ -66,6 +67,7 @@ public final class AnglerOnPlot extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new FishingEvent(), this);
         getServer().getPluginManager().registerEvents(new JoinExitEvent(), this);
         getServer().getPluginManager().registerEvents(new FishingInteractEvent(), this);
+        getServer().getPluginManager().registerEvents(new PediaGUI(), null);
     }
 
     private boolean createPluginDirectory() {

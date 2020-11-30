@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Random;
 
 public class FishDatabase {
@@ -72,6 +73,20 @@ public class FishDatabase {
             Bukkit.getLogger().info("데이터베이스 예외가 발생했습니다. 플러그인을 비활성화합니다.");
             plugin.getPluginLoader().disablePlugin(plugin);
             return;
+        }
+    }
+
+    public boolean isExistPedia(String species, String uuid) {
+        try {
+            if (statement.executeQuery("SELECT count(*) FROM pedia WHERE species = '" + species + "' AND player = '" + uuid + "'").getInt(1) == 0) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+        catch (Exception e) {
+            return false;
         }
     }
 
@@ -158,12 +173,39 @@ public class FishDatabase {
         return fishingables;
     }
 
+    public ArrayList<FishData> getAllFish() {
+        ArrayList<FishData> fishes = new ArrayList<>();
+        ArrayList<String> names = new ArrayList<>();
+
+        try {
+            ResultSet result = statement.executeQuery("SELECT name FROM fish");
+            while (result.next()) {
+                names.add(result.getString("name"));
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        for (String name : names) {
+            fishes.add(getFishData(name));
+            for (FishDataEx dataEx : getSubspecieses(name)) {
+                fishes.add(dataEx);
+            }
+        }
+
+        fishes.sort(Comparator.comparing(o -> {
+            return o.name;
+        }));
+        return fishes;
+    }
+
     public ArrayList<FishDataEx> getSubspecieses(String species) {
         ArrayList<FishDataEx> subspecieses = new ArrayList<>();
         ArrayList<String> subspeciesNames = new ArrayList<>();
 
         try {
-            ResultSet result = statement.executeQuery("SELECT * FROM subspecies WHERE (name = '" + species + "')");
+            ResultSet result = statement.executeQuery("SELECT * FROM subspecies WHERE (species = '" + species + "')");
             while (result.next()) {
                 subspeciesNames.add(result.getString("name"));
             }
@@ -216,7 +258,7 @@ public class FishDatabase {
         try {
             FishDataEx data = new FishDataEx();
 
-            if (statement.executeQuery("SELECT count(*0 FROM subspecies WHERE (name = '" + name + "')").getInt(1) == 0)
+            if (statement.executeQuery("SELECT count(*) FROM subspecies WHERE (name = '" + name + "')").getInt(1) == 0)
                 return null;
 
             ResultSet result = statement.executeQuery("SELECT * FROM subspecies WHERE (name = '" + name + "')");
@@ -234,8 +276,8 @@ public class FishDatabase {
             data.species = data2.name;
             data.name = name;
             data.power = data2.power;
-            data.biome = result.getString("biome");
-            data.other = result.getString("other");
+            data.biome = result.getString(3);
+            data.other = result.getString(4);
 
             return data;
         }

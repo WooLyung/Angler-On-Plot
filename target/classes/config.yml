@@ -18,5 +18,9 @@ message:
     no_permission: "§b[Fish] §f명령어 권한이 없습니다."
     no_arg: "§b[Fish] §f낚시 명령어를 보려면 /fish help 를 입력하세요."
     wrong_command: "§b[Fish] §f잘못된 명령어입니다."
+    pedia:
+      wrong_page: "§b[Fish] §f잘못된 페이지입니다."
+      small_page: "§b[Fish] §f페이지는 양의 정수여야 합니다."
+      no_player: "§b[Fish] §f데이터가 없는 플레이어입니다."
   plot:
     not_plot_world: "§b[Fish] §f그 곳은 플롯 월드가 아닙니다."

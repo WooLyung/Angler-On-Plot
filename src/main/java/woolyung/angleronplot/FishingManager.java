@@ -204,6 +204,17 @@ public class FishingManager {
         player.getWorld().playSound(player.getLocation(), Sound.AMBIENT_UNDERWATER_ENTER, 0.3f, 0.8f);
     }
 
+    public Material getFishMaterial(FishData.Rank rank) {
+        Material mat;
+        if (rank == FishData.Rank.LEGENDARY) mat = Material.TROPICAL_FISH;
+        else if (rank == FishData.Rank.RARE) mat = Material.SALMON;
+        else if (rank == FishData.Rank.SPECIAL) mat = Material.COOKED_SALMON;
+        else if (rank == FishData.Rank.COMMON) mat = Material.COD;
+        else mat = Material.COOKED_COD;
+
+        return mat;
+    }
+
     public ItemStack getFishItem(Player player, CaughtFishData fish) {
         ItemStack item;
         if (fish.rank == FishData.Rank.LEGENDARY) item = new ItemStack(Material.TROPICAL_FISH);
