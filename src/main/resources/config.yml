@@ -8,8 +8,8 @@ message:
       miss: "§b[Fish] §f당신은 %s§f을(를) 놓쳤습니다."
       miss_broadcast: "§b[Fish] §f%s님이 %s§f을(를) 놓쳤습니다."
     rill_in:
-      success: "§b[Fish] §f당신은 %.2fcm %s§f을(를) 낚았습니다!"
-      success_broadcast: "§b[Fish] §f%s님이 %.2fcm %s§f을(를) 낚았습니다!"
+      success: "§b[Fish] §f당신은 %fcm %s§f을(를) 낚았습니다!"
+      success_broadcast: "§b[Fish] §f%s님이 %fcm %s§f을(를) 낚았습니다!"
     fail:
       player: "§b[Fish] §f당신은 %s§f을(를) 낚는 데에 실패했습니다."
       broadcast: "§b[Fish] §f%s님이 %s§f을(를) 낚는 데에 실패했습니다."

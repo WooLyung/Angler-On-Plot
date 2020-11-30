@@ -1,5 +1,6 @@
 package woolyung.angleronplot.events;
 
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.FishHook;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -37,7 +38,7 @@ public class FishingEvent implements Listener {
             PlotDataEx plotDataEx = MineplanetPlot.instance.getPlotDatabase().getPlotDataEx(locData.plotLocX, locData.plotLocZ);
             PlotData plotData = manager.getPlotData(locData.plotLocX, locData.plotLocZ);
             int depth = manager.getDepth(hook.getLocation());
-            String rank = manager.getRandomRankString();
+            String rank = manager.getRandomRankString(player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.LUCK));
 
             ArrayList<FishData> fishingables = plugin.getFishDatabase().getFishingables(plotData.temp, plotData.current, plotData.pollution, depth, rank, plotDataEx.biome, "none");
             if (fishingables != null) {
