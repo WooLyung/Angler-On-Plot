@@ -137,8 +137,8 @@ public class FishCommand implements CommandExecutor {
 
         player.sendMessage("§b[Fish] ─────────────────────────");
         player.sendMessage("§b · §7플롯주소 §f: [" + x + ":" + z + "]");
-        player.sendMessage("§b · §7수온 §f: " + data.temp + "℃");
-        player.sendMessage("§b · §7해류 §f: " + data.current + "km/h");
-        player.sendMessage("§b · §7오염도 §f: " + data.pollution + "%");
+        player.sendMessage(String.format("§b · §7수온 §f: %.2f℃", data.temp));
+        player.sendMessage(String.format("§b · §7해류 §f: %.2fkm/h", data.current));
+        player.sendMessage(String.format("§b · §7오염도 §f: %.2f%%", data.pollution));
     }
 }

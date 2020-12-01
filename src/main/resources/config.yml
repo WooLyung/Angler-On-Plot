@@ -1,7 +1,7 @@
 message:
   shop:
     no_fish: "§b[Fish] §f판매할 어류가 존재하지 않습니다."
-    sell_fish: "§b[Fish] §f%d개의 어류를 판매해 %d 플래닛을 받았습니다."
+    sell_fish: "§b[Fish] §f%d마리의 어류를 판매해 %d 플래닛을 받았습니다."
   fishing:
     caught:
       no_fish: "§b[Fish] §f아무것도 낚이지 않았습니다."

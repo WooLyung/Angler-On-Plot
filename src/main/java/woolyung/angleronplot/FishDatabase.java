@@ -1,18 +1,15 @@
 package woolyung.angleronplot;
 
 import org.bukkit.Bukkit;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import woolyung.angleronplot.datas.FishData;
 import woolyung.angleronplot.datas.FishDataEx;
-import woolyung.main.MineplanetPlot;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Random;
 
 public class FishDatabase {
@@ -90,6 +87,20 @@ public class FishDatabase {
         catch (Exception e) {
             return false;
         }
+    }
+
+    public HashMap<String, Boolean> getCaughtFishes(String uuid) {
+        HashMap<String, Boolean> map = new HashMap<>();
+
+        try {
+            ResultSet result = statement.executeQuery("SELECT * FROM pedia WHERE player = '" + uuid + "'");
+            String species = result.getString("species");
+            map.put(species, true);
+        } catch (Exception e) {
+            return new HashMap<>();
+        }
+
+        return map;
     }
 
     public boolean addPediaData(String species, String uuid) {

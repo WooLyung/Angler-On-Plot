@@ -94,9 +94,9 @@ public class ShopGUI implements Listener {
             ItemStack item = inventory.getItem(slot);
             int price = manager.getPrice(item);
             if (price != 0) {
-                inventory.setItem(slot, new ItemStack(Material.AIR));
+                count += item.getAmount();
                 sumPrice += price;
-                count++;
+                inventory.setItem(slot, new ItemStack(Material.AIR));
             }
         }
 
