@@ -1,6 +1,8 @@
 package woolyung.angleronplot;
 
 import org.bukkit.Bukkit;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import woolyung.angleronplot.datas.FishData;
 import woolyung.angleronplot.datas.FishDataEx;
 import woolyung.main.MineplanetPlot;
@@ -187,6 +189,8 @@ public class FishDatabase {
             e.printStackTrace();
         }
 
+        names.sort((o1, o2) -> o1.compareTo(o2));
+
         for (String name : names) {
             fishes.add(getFishData(name));
             for (FishDataEx dataEx : getSubspecieses(name)) {
@@ -194,9 +198,6 @@ public class FishDatabase {
             }
         }
 
-        fishes.sort(Comparator.comparing(o -> {
-            return o.name;
-        }));
         return fishes;
     }
 

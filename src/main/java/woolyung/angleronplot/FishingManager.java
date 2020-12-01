@@ -238,4 +238,64 @@ public class FishingManager {
 
         return item;
     }
+
+    public int getRankPrice(FishData.Rank rank) {
+        if (rank == FishData.Rank.LEGENDARY) {
+            return 100000000;
+        }
+        else if (rank == FishData.Rank.RARE) {
+            return 1000000;
+        }
+        else if (rank == FishData.Rank.SPECIAL) {
+            return 100000;
+        }
+        else if (rank == FishData.Rank.COMMON) {
+            return 5000;
+        }
+        else {
+            return 100;
+        }
+    }
+
+    public int getPrice(ItemStack item) {
+        if (item == null) return 0;
+        if (item.getType() == Material.AIR) return 0;
+        ItemMeta meta = item.getItemMeta();
+
+        if (!(meta.getDisplayName().contains("") || meta.getDisplayName().contains(""))) return 0; // 어류가 아님
+
+        String name = meta.getDisplayName();
+        name = name.replace(" §9♂", "");
+        name = name.replace(" §d♀", "");
+        name = name.replace("§8", "");
+        name = name.replace("§f", "");
+        name = name.replace("§e", "");
+        name = name.replace("§b", "");
+        name = name.replace("§5", "");
+        FishData fishData = database.getSubspeciesData(name);
+        if (fishData == null) fishData = database.getFishData(name);
+        if (fishData == null) return 0; // 데이터가 없음
+
+        String length = meta.getLore().get(0);
+        length = length.replace("§b길이 §f", "");
+        length = length.replace("cm", "");
+
+        float lengthValue = 0;
+        try {
+            lengthValue = Float.parseFloat(length);
+        }
+        catch (Exception e) {
+            return 0; // 플로트 변환 실패
+        }
+
+        float min_length = fishData.min_size;
+        float max_length = fishData.max_size;
+        float avg_length = (min_length + max_length) * 0.5f;
+        float weight = lengthValue / avg_length;
+        float price = weight * getRankPrice(fishData.rank);
+        if (meta.getDisplayName().contains("♀")) price *= 1.2f;
+        price *= item.getAmount();
+
+        return (int) Math.round(price);
+    }
 }
