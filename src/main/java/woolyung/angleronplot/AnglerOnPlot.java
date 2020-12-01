@@ -3,6 +3,7 @@ package woolyung.angleronplot;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import woolyung.angleronplot.commands.FishCommand;
+import woolyung.angleronplot.datas.FishData;
 import woolyung.angleronplot.events.FishingInteractEvent;
 import woolyung.angleronplot.events.FishingEvent;
 import woolyung.angleronplot.events.JoinExitEvent;
@@ -11,6 +12,7 @@ import woolyung.angleronplot.gui.PediaGUI;
 import woolyung.angleronplot.gui.ShopGUI;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public final class AnglerOnPlot extends JavaPlugin {
@@ -19,6 +21,7 @@ public final class AnglerOnPlot extends JavaPlugin {
     private FishDatabase fishDatabase;
     private FishingManager manager;
     private HashMap<Player, FishingThread> playerThread = new HashMap<>();
+    private ArrayList<FishData> allFishDatas = new ArrayList<>();
 
     public static AnglerOnPlot getInstance() {
         return instance;
@@ -35,6 +38,8 @@ public final class AnglerOnPlot extends JavaPlugin {
     public HashMap<Player, FishingThread> getPlayerThread() {
         return playerThread;
     }
+
+    public ArrayList<FishData> getAllFishDatas() { return allFishDatas; }
 
     @Override
     public void onEnable() {
@@ -70,6 +75,8 @@ public final class AnglerOnPlot extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new FishingInteractEvent(), this);
         getServer().getPluginManager().registerEvents(new PediaGUI(), this);
         getServer().getPluginManager().registerEvents(new ShopGUI(), this);
+
+        allFishDatas = fishDatabase.getAllFish();
     }
 
     private boolean createPluginDirectory() {

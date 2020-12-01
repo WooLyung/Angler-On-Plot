@@ -20,17 +20,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class PediaGUI implements Listener {
-    static ArrayList<FishData> allFishes = null;
-
     public static void openPediaGUI(int page, String name, String uuid, Player player) {
         FishingManager manager = AnglerOnPlot.getInstance().getManager();
         FishDatabase database = AnglerOnPlot.getInstance().getFishDatabase();
         Inventory inv = Bukkit.createInventory(null, 54, name + "님의 낚시 도감 " + page + "p");
-        if (allFishes == null)
-         allFishes = database.getAllFish();
 
         int index = 0;
-        for (FishData data : allFishes) {
+        for (FishData data : AnglerOnPlot.getInstance().getAllFishDatas()) {
             if (index >= page * 54 - 54 && index <= page * 54 - 1) {
                 if (database.isExistPedia(data.name, uuid)) { // 낚은 어류
                     if (data instanceof FishDataEx) {

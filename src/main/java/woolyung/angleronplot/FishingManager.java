@@ -17,9 +17,18 @@ import java.util.Random;
 public class FishingManager {
 
     private FishDatabase database;
+    private boolean isGold = false;
 
     public FishingManager(FishDatabase database) {
         this.database = database;
+    }
+
+    public void setIsGold(boolean isGold) {
+        this.isGold = isGold;
+    }
+
+    public boolean getIsGold() {
+        return isGold;
     }
 
     public PlotData getPlotData(int x, int z) {
@@ -152,6 +161,19 @@ public class FishingManager {
             return "§f";
         else
             return "§7";
+    }
+
+    public String getRankString(FishData.Rank rank) {
+        if (rank == FishData.Rank.LEGENDARY)
+            return "legendary";
+        else if (rank == FishData.Rank.RARE)
+            return "rare";
+        else if (rank == FishData.Rank.SPECIAL)
+            return "special";
+        else if (rank == FishData.Rank.COMMON)
+            return "common";
+        else
+            return "valueless";
     }
 
     public String getRankColor(FishData.Rank rank) {

@@ -49,6 +49,23 @@ public class FishCommand implements CommandExecutor {
             else if (args[0].compareTo("shop") == 0) {
                 arg_shop(sender, command, label, args, player);
             }
+            else if (args[0].compareTo("gold") == 0) {
+                if (player.hasPermission("angleronplot.permission.command")) {
+                    arg_gold(sender, command, label, args, player);
+                }
+                else {
+                    player.sendMessage(AnglerOnPlot.getInstance().getConfig().getString("message.command.no_permission"));
+                }
+            }
+            else if (args[0].compareTo("op") == 0) {
+                if (player.hasPermission("angleronplot.permission.command")) {
+                    player.sendMessage("§b[Fish] ─────────────────────────");
+                    player.sendMessage("§b · §7/fish gold §f: 스폰을 황금 어장으로 만듭니다");
+                }
+                else {
+                    player.sendMessage(AnglerOnPlot.getInstance().getConfig().getString("message.command.no_permission"));
+                }
+            }
             else {
                 player.sendMessage(AnglerOnPlot.getInstance().getConfig().getString("message.command.wrong_command")); // 알 수 없는 명령어
             }
@@ -58,6 +75,17 @@ public class FishCommand implements CommandExecutor {
 
     private void arg_shop(CommandSender sender, Command command, String label, String[] args, Player player) {
         ShopGUI.openShopGUI(player);
+    }
+
+    private void arg_gold(CommandSender sender, Command command, String label, String[] args, Player player) {
+        if (plugin.getManager().getIsGold()) {
+            plugin.getManager().setIsGold(false);
+            plugin.getServer().broadcastMessage(AnglerOnPlot.getInstance().getConfig().getString("message.command.gold.false"));
+        }
+        else {
+            plugin.getManager().setIsGold(true);
+            plugin.getServer().broadcastMessage(AnglerOnPlot.getInstance().getConfig().getString("message.command.gold.true"));
+        }
     }
 
     private void arg_pedia(CommandSender sender, Command command, String label, String[] args, Player player) {

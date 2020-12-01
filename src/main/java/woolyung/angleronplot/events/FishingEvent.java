@@ -40,7 +40,19 @@ public class FishingEvent implements Listener {
             int depth = manager.getDepth(hook.getLocation());
             String rank = manager.getRandomRankString(player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.LUCK));
 
-            ArrayList<FishData> fishingables = plugin.getFishDatabase().getFishingables(plotData.temp, plotData.current, plotData.pollution, depth, rank, plotDataEx.biome, "none");
+            ArrayList<FishData> fishingables;
+            if (plugin.getManager().getIsGold() && Math.abs(locData.plotLocX) <= 2 && Math.abs(locData.plotLocZ) <= 2 ) {
+                fishingables = new ArrayList<>();
+                for (FishData fish : plugin.getAllFishDatas()) {
+                    if (rank.compareTo(plugin.getManager().getRankString(fish.rank)) == 0) {
+                        fishingables.add(fish);
+                    }
+                }
+            }
+            else {
+                fishingables = plugin.getFishDatabase().getFishingables(plotData.temp, plotData.current, plotData.pollution, depth, rank, plotDataEx.biome, "none");
+            }
+
             if (fishingables != null) {
                 if (fishingables.size() == 0) {
                     player.sendMessage(plugin.getConfig().getString("message.fishing.caught.no_fish"));

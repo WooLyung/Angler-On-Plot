@@ -1,7 +1,7 @@
 message:
   shop:
     no_fish: "§b[Fish] §f판매할 어류가 존재하지 않습니다."
-    sell_fish: "§b[Fish] §f%d개의 어류를 판매해 %d 플래닛을 받았습니다."
+    sell_fish: "§b[Fish] §f%d마리의 어류를 판매해 %d 플래닛을 받았습니다."
   fishing:
     caught:
       no_fish: "§b[Fish] §f아무것도 낚이지 않았습니다."
@@ -28,5 +28,8 @@ message:
     price:
       error: "§b[Fish] §f가격을 책정할 수 없습니다."
       result: "§b[Fish] §f%s §f의 가격은 %d 플래닛입니다."
+    gold:
+      true: "§b[Fish] §f황금어장 이벤트가 시작되었습니다! 스폰에서 모든 어류가 낚입니다."
+      false: "§b[Fish] §f황금어장 이벤트가 종료되었습니다."
   plot:
     not_plot_world: "§b[Fish] §f그 곳은 플롯 월드가 아닙니다."
