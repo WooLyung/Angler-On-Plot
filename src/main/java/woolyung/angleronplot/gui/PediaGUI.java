@@ -37,6 +37,7 @@ public class PediaGUI implements Listener {
                                 String.format("§b해류 §f%.1f~%.1fkm/h", data.min_current, data.max_current),
                                 String.format("§b오염도 §f%.1f~%.1f%%", data.min_poll, data.max_poll),
                                 String.format("§b바이옴 §f%s", MineplanetPlot.instance.getPlotManager().getBiomeName(exData.biome))));
+                                //String.format("§b바이옴 §f%s", exData.biome)));
                     }
                     else {
                         inv.addItem(createGuiItem(manager.getFishMaterial(data.rank), manager.getRankColor(data.rank) + data.name,

@@ -8,13 +8,9 @@
   <component name="ChangeListManager">
     <list default="true" id="4227dbc6-8fce-4e18-9a57-a001c5f23b20" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/woolyung/angleronplot/AnglerOnPlot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/woolyung/angleronplot/AnglerOnPlot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/woolyung/angleronplot/FishingManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/woolyung/angleronplot/FishingManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/woolyung/angleronplot/commands/FishCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/woolyung/angleronplot/commands/FishCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/woolyung/angleronplot/FishDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/woolyung/angleronplot/FishDatabase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/woolyung/angleronplot/events/FishingEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/woolyung/angleronplot/events/FishingEvent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/woolyung/angleronplot/gui/PediaGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/woolyung/angleronplot/gui/PediaGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/config.yml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -68,21 +64,26 @@
     <session id="616062201">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="6" />
+          <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.20" value="1" />
+          <entry key="project.open.time.22" value="1" />
+          <entry key="project.open.time.24" value="1" />
+          <entry key="project.open.time.35" value="1" />
+          <entry key="project.open.time.36" value="1" />
           <entry key="project.open.time.56" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="10878" />
+          <entry key="java" value="10948" />
           <entry key="yml" value="452" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="10878" />
+          <entry key="JAVA" value="10948" />
           <entry key="YAML" value="452" />
         </counts>
       </usages-collector>
@@ -102,11 +103,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/woolyung/angleronplot/events/FishingEvent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="43" column="114" lean-forward="true" selection-start-line="43" selection-start-column="114" selection-end-line="43" selection-end-column="114" />
+            <state relative-caret-position="551">
+              <caret line="45" column="49" selection-start-line="45" selection-start-column="49" selection-end-line="45" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -114,11 +115,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/woolyung/angleronplot/gui/PediaGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="28" column="73" selection-start-line="28" selection-start-column="73" selection-end-line="28" selection-end-column="73" />
+            <state relative-caret-position="399">
+              <caret line="38" column="32" selection-start-line="38" selection-start-column="32" selection-end-line="38" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -129,8 +130,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/woolyung/angleronplot/AnglerOnPlot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="779">
-              <caret line="78" column="49" lean-forward="true" selection-start-line="78" selection-start-column="49" selection-end-line="78" selection-end-column="49" />
+            <state relative-caret-position="1083">
+              <caret line="78" column="46" selection-start-line="78" selection-start-column="36" selection-end-line="78" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -141,7 +142,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/woolyung/angleronplot/fishingsystem/FishingFinishEvent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
+            <state relative-caret-position="342">
               <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -153,7 +154,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/woolyung/angleronplot/fishingsystem/FishingThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="439">
+            <state relative-caret-position="1615">
               <caret line="94" column="32" selection-start-line="94" selection-start-column="32" selection-end-line="94" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -165,8 +166,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/woolyung/angleronplot/FishingManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
-              <caret line="162" column="24" lean-forward="true" selection-start-line="162" selection-start-column="24" selection-end-line="162" selection-end-column="24" />
+            <state relative-caret-position="2736">
+              <caret line="162" column="24" selection-start-line="162" selection-start-column="24" selection-end-line="162" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#768#769#0" expanded="true" />
@@ -179,8 +180,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/woolyung/angleronplot/FishDatabase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="491">
-              <caret line="227" lean-forward="true" selection-start-line="227" selection-end-line="227" />
+            <state relative-caret-position="354">
+              <caret line="281" column="49" lean-forward="true" selection-start-line="281" selection-start-column="49" selection-end-line="281" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -191,8 +192,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/woolyung/angleronplot/gui/ShopGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1007">
-              <caret line="71" column="43" lean-forward="true" selection-start-line="71" selection-start-column="43" selection-end-line="71" selection-end-column="43" />
+            <state relative-caret-position="1064">
+              <caret line="71" column="43" selection-start-line="71" selection-start-column="43" selection-end-line="71" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -211,16 +212,12 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getRandomRank</find>
-      <find>getRandomRankStr</find>
-      <find>%.2</find>
       <find>subspecies</find>
       <find>subspe</find>
       <find>chance</find>
       <find>ㄹ</find>
       <find>getFishing</find>
       <find>getFish</find>
-      <find>getSubspecieses</find>
       <find>getFi</find>
       <find>Minepla</find>
       <find>Mineplanet</find>
@@ -239,8 +236,12 @@
       <find>other</find>
       <find>none</find>
       <find>getFishingables</find>
-      <find>getSubspeciesData</find>
       <find>Rank</find>
+      <find>ex</find>
+      <find>getAllFish</find>
+      <find>getSubspecieses</find>
+      <find>getSubspeciesData</find>
+      <find>biome</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -273,11 +274,11 @@
         <option value="$PROJECT_DIR$/src/main/java/woolyung/angleronplot/gui/ShopGUI.java" />
         <option value="$PROJECT_DIR$/src/main/resources/config.yml" />
         <option value="$PROJECT_DIR$/src/main/java/woolyung/angleronplot/commands/FishCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/woolyung/angleronplot/FishDatabase.java" />
-        <option value="$PROJECT_DIR$/src/main/java/woolyung/angleronplot/gui/PediaGUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/woolyung/angleronplot/AnglerOnPlot.java" />
         <option value="$PROJECT_DIR$/src/main/java/woolyung/angleronplot/FishingManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/woolyung/angleronplot/events/FishingEvent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/woolyung/angleronplot/FishDatabase.java" />
+        <option value="$PROJECT_DIR$/src/main/java/woolyung/angleronplot/gui/PediaGUI.java" />
       </list>
     </option>
   </component>
@@ -289,11 +290,11 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="1912" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-5" />
+    <option name="y" value="35" />
+    <option name="width" value="1945" />
+    <option name="height" value="1105" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -302,8 +303,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -388,11 +387,13 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1606826593190" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../library/EssentialsX-2.18.1.0.jar!/" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1609407355001" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../YTTP/프로젝트/Achievement/Achievement" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -457,10 +458,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1056" extended-state="0" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19989339" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21342282" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -496,9 +497,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="513">
           <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -571,30 +569,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/woolyung/angleronplot/FishDatabase.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/woolyung/angleronplot/events/FishingEvent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="227" lean-forward="true" selection-start-line="227" selection-end-line="227" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/woolyung/angleronplot/gui/ShopGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1007">
-          <caret line="71" column="43" lean-forward="true" selection-start-line="71" selection-start-column="43" selection-end-line="71" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/woolyung/angleronplot/gui/PediaGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="28" column="73" selection-start-line="28" selection-start-column="73" selection-end-line="28" selection-end-column="73" />
+        <state relative-caret-position="551">
+          <caret line="45" column="49" selection-start-line="45" selection-start-column="49" selection-end-line="45" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -603,8 +581,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/woolyung/angleronplot/AnglerOnPlot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="779">
-          <caret line="78" column="49" lean-forward="true" selection-start-line="78" selection-start-column="49" selection-end-line="78" selection-end-column="49" />
+        <state relative-caret-position="1083">
+          <caret line="78" column="46" selection-start-line="78" selection-start-column="36" selection-end-line="78" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -613,7 +591,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/woolyung/angleronplot/fishingsystem/FishingFinishEvent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
+        <state relative-caret-position="342">
           <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -623,7 +601,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/woolyung/angleronplot/fishingsystem/FishingThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
+        <state relative-caret-position="1615">
           <caret line="94" column="32" selection-start-line="94" selection-start-column="32" selection-end-line="94" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -633,8 +611,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/woolyung/angleronplot/FishingManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="162" column="24" lean-forward="true" selection-start-line="162" selection-start-column="24" selection-end-line="162" selection-end-column="24" />
+        <state relative-caret-position="2736">
+          <caret line="162" column="24" selection-start-line="162" selection-start-column="24" selection-end-line="162" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#768#769#0" expanded="true" />
@@ -643,10 +621,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/woolyung/angleronplot/events/FishingEvent.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/woolyung/angleronplot/gui/ShopGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="43" column="114" lean-forward="true" selection-start-line="43" selection-start-column="114" selection-end-line="43" selection-end-column="114" />
+        <state relative-caret-position="1064">
+          <caret line="71" column="43" selection-start-line="71" selection-start-column="43" selection-end-line="71" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/woolyung/angleronplot/FishDatabase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="281" column="49" lean-forward="true" selection-start-line="281" selection-start-column="49" selection-end-line="281" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/woolyung/angleronplot/gui/PediaGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="38" column="32" selection-start-line="38" selection-start-column="32" selection-end-line="38" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

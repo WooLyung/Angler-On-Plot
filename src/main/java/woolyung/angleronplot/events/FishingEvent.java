@@ -38,6 +38,7 @@ public class FishingEvent implements Listener {
             PlotDataEx plotDataEx = MineplanetPlot.instance.getPlotDatabase().getPlotDataEx(locData.plotLocX, locData.plotLocZ);
             PlotData plotData = manager.getPlotData(locData.plotLocX, locData.plotLocZ);
             int depth = manager.getDepth(hook.getLocation());
+            if (depth >= 120) depth = 1000;
             String rank = manager.getRandomRankString(player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.LUCK));
 
             ArrayList<FishData> fishingables;

@@ -274,6 +274,9 @@ public class FishDatabase {
                 return null;
 
             ResultSet result = statement.executeQuery("SELECT * FROM subspecies WHERE (name = '" + name + "')");
+            data.biome = result.getString("biome");
+            data.other = result.getString("other");
+
             FishData data2 = getFishData(result.getString("species"));
 
             data.max_current = data2.max_current;
@@ -288,8 +291,6 @@ public class FishDatabase {
             data.species = data2.name;
             data.name = name;
             data.power = data2.power;
-            data.biome = result.getString(3);
-            data.other = result.getString(4);
 
             return data;
         }
