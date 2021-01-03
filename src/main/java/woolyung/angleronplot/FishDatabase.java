@@ -141,7 +141,7 @@ public class FishDatabase {
         ArrayList<String> names = new ArrayList<>();
 
         try {
-            ResultSet result = statement.executeQuery("SELECT name FROM fish WHERE (" + temp + " >= min_temp AND " + temp + " <= max_temp AND " + pollution + " >= min_poll AND " + pollution + " <= max_poll AND " + current + " >= min_current AND " + current + " <= max_current AND " + (depth * 10) + " >= max_size)");
+            ResultSet result = statement.executeQuery("SELECT name FROM fish WHERE (" + temp + " >= min_temp AND " + temp + " <= max_temp AND " + pollution + " >= min_poll AND " + pollution + " <= max_poll AND " + current + " >= min_current AND " + current + " <= max_current AND " + (depth * 20) + " >= max_size)");
             while (result.next()) {
                 names.add(result.getString("name"));
             }
