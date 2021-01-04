@@ -191,9 +191,9 @@ public class FishingManager {
 
     public float getFishingChance(String rank) {
         if (rank.compareTo("legendary") == 0)
-            return 0.01f;
+            return 0.005f;
         else if (rank.compareTo("rare") == 0)
-            return 0.2f;
+            return 0.14f;
         else if (rank.compareTo("special") == 0)
             return 0.6f;
         else if (rank.compareTo("common") == 0)
@@ -263,16 +263,16 @@ public class FishingManager {
 
     public int getRankPrice(FishData.Rank rank) {
         if (rank == FishData.Rank.LEGENDARY) {
-            return 200000000;
+            return 150000000;
         }
         else if (rank == FishData.Rank.RARE) {
-            return 500000;
+            return 200000;
         }
         else if (rank == FishData.Rank.SPECIAL) {
-            return 60000;
+            return 30000;
         }
         else if (rank == FishData.Rank.COMMON) {
-            return 5000;
+            return 1000;
         }
         else {
             return 100;

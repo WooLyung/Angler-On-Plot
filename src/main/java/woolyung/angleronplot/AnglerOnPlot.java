@@ -1,5 +1,6 @@
 package woolyung.angleronplot;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import woolyung.angleronplot.commands.FishCommand;
@@ -14,6 +15,7 @@ import woolyung.angleronplot.gui.ShopGUI;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.UUID;
 
 public final class AnglerOnPlot extends JavaPlugin {
 
@@ -21,6 +23,7 @@ public final class AnglerOnPlot extends JavaPlugin {
     private FishDatabase fishDatabase;
     private FishingManager manager;
     private HashMap<Player, FishingThread> playerThread = new HashMap<>();
+    private HashMap<UUID, Boolean> isRilled = new HashMap<>();
     private ArrayList<FishData> allFishDatas = new ArrayList<>();
 
     public static AnglerOnPlot getInstance() {
@@ -123,5 +126,9 @@ public final class AnglerOnPlot extends JavaPlugin {
         else {
             return true;
         }
+    }
+
+    public HashMap<UUID, Boolean> getIsRilled() {
+        return isRilled;
     }
 }

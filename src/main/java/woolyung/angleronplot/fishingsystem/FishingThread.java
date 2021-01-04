@@ -7,7 +7,9 @@ import woolyung.angleronplot.FishingManager;
 import woolyung.angleronplot.datas.CaughtFishData;
 import woolyung.angleronplot.datas.FishData;
 
+import java.util.HashMap;
 import java.util.Random;
+import java.util.UUID;
 
 public class FishingThread extends Thread {
     private AnglerOnPlot plugin;
@@ -69,12 +71,24 @@ public class FishingThread extends Thread {
 
                     // 성공
                     if (gage >= 20) {
-                        Bukkit.getPluginManager().callEvent(new FishingFinishEvent(player, caughtFishData, FishingFinishEvent.Result.SUCCESS));
                         isFinish = true;
+
+                        HashMap<UUID, Boolean> isRilled = plugin.getIsRilled();
+
+                        if (isRilled.containsKey(player.getUniqueId())) {
+                            isRilled.remove(player.getUniqueId());
+                            Bukkit.getPluginManager().callEvent(new FishingFinishEvent(player, caughtFishData, FishingFinishEvent.Result.SUCCESS));
+                        }
                     }
                     else if (gage <= -20) { // 실패
-                        Bukkit.getPluginManager().callEvent(new FishingFinishEvent(player, caughtFishData, FishingFinishEvent.Result.FAIL));
                         isFinish = true;
+
+                        HashMap<UUID, Boolean> isRilled = plugin.getIsRilled();
+
+                        if (isRilled.containsKey(player.getUniqueId())) {
+                            isRilled.remove(player.getUniqueId());
+                            Bukkit.getPluginManager().callEvent(new FishingFinishEvent(player, caughtFishData, FishingFinishEvent.Result.FAIL));
+                        }
                     }
 
                     manager.sendFishingTitle(player, dir, gage);

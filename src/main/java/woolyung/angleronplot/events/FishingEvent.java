@@ -1,11 +1,15 @@
 package woolyung.angleronplot.events;
 
+import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.FishHook;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerFishEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
+import org.bukkit.inventory.meta.ItemMeta;
 import woolyung.angleronplot.AnglerOnPlot;
 import woolyung.angleronplot.FishingManager;
 import woolyung.angleronplot.datas.FishData;
@@ -16,7 +20,9 @@ import woolyung.main.plot.Data.PlotDataEx;
 import woolyung.main.plot.Data.PlotLocData;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
+import java.util.UUID;
 
 public class FishingEvent implements Listener {
     @EventHandler
@@ -34,12 +40,16 @@ public class FishingEvent implements Listener {
             event.setCancelled(true);
             event.getHook().remove();
 
+            if (player.getInventory().getItemInMainHand().getType() != Material.FISHING_ROD)
+                return;
+
             PlotLocData locData = MineplanetPlot.instance.getPlotWorld().getPlotLocData(hook.getLocation().getBlockX(), hook.getLocation().getBlockZ());
             PlotDataEx plotDataEx = MineplanetPlot.instance.getPlotDatabase().getPlotDataEx(locData.plotLocX, locData.plotLocZ);
             PlotData plotData = manager.getPlotData(locData.plotLocX, locData.plotLocZ);
             int depth = manager.getDepth(hook.getLocation());
             if (depth >= 120) depth = 1000;
             String rank = manager.getRandomRankString(player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.LUCK));
+            int durability = player.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.DURABILITY);
 
             ArrayList<FishData> fishingables;
             if (plugin.getManager().getIsGold() && Math.abs(locData.plotLocX) <= 2 && Math.abs(locData.plotLocZ) <= 2 ) {
@@ -76,6 +86,16 @@ public class FishingEvent implements Listener {
                             player.sendMessage(plugin.getConfig().getString("message.fishing.caught.rill_in_heavy"));
                         else
                             player.sendMessage(plugin.getConfig().getString("message.fishing.caught.rill_in_default"));
+
+                        if (event.getCaught() != null) {
+                            event.getCaught().remove();
+                            event.setCancelled(false);
+                        }
+
+                        HashMap<UUID, Boolean> isRilled = plugin.getIsRilled();
+                        if (!isRilled.containsKey(player.getUniqueId())) {
+                            isRilled.put(player.getUniqueId(), true);
+                        }
 
                         plugin.getPlayerThread().put(player, thread);
                         thread.start();
