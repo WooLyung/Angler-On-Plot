@@ -114,7 +114,7 @@ public class FishingManager {
                 rank = FishData.Rank.VALUELESS;
             }
         }
-        else {
+        else if (luck == 3) {
             if (rank_random <= 1) { // 0.1%, 전설적인
                 rank = FishData.Rank.LEGENDARY;
             }
@@ -127,7 +127,58 @@ public class FishingManager {
             else if (rank_random <= 960) { // 70%, 평범한
                 rank = FishData.Rank.COMMON;
             }
+            else { // 6%, 무가치한
+                rank = FishData.Rank.VALUELESS;
+            }
+        }
+        else if (luck == 4) {
+            if (rank_random <= 1) { // 0.1%, 전설적인
+                rank = FishData.Rank.LEGENDARY;
+            }
+            else if (rank_random <= 60) { // 5.9%, 희귀한
+                rank = FishData.Rank.RARE;
+            }
+            else if (rank_random <= 280) { // 22%, 특별한
+                rank = FishData.Rank.SPECIAL;
+            }
+            else if (rank_random <= 960) { // 68%, 평범한
+                rank = FishData.Rank.COMMON;
+            }
             else { // 4%, 무가치한
+                rank = FishData.Rank.VALUELESS;
+            }
+        }
+        else if (luck == 5) {
+            if (rank_random <= 1) { // 0.1%, 전설적인
+                rank = FishData.Rank.LEGENDARY;
+            }
+            else if (rank_random <= 60) { // 5.9%, 희귀한
+                rank = FishData.Rank.RARE;
+            }
+            else if (rank_random <= 300) { // 24%, 특별한
+                rank = FishData.Rank.SPECIAL;
+            }
+            else if (rank_random <= 970) { // 67%, 평범한
+                rank = FishData.Rank.COMMON;
+            }
+            else { // 3%, 무가치한
+                rank = FishData.Rank.VALUELESS;
+            }
+        }
+        else {
+            if (rank_random <= 1) { // 0.1%, 전설적인
+                rank = FishData.Rank.LEGENDARY;
+            }
+            else if (rank_random <= 60) { // 5.9%, 희귀한
+                rank = FishData.Rank.RARE;
+            }
+            else if (rank_random <= 320) { // 26%, 특별한
+                rank = FishData.Rank.SPECIAL;
+            }
+            else if (rank_random <= 980) { // 66%, 평범한
+                rank = FishData.Rank.COMMON;
+            }
+            else { // 2%, 무가치한
                 rank = FishData.Rank.VALUELESS;
             }
         }
@@ -266,13 +317,13 @@ public class FishingManager {
             return 150000000;
         }
         else if (rank == FishData.Rank.RARE) {
-            return 200000;
+            return 250000;
         }
         else if (rank == FishData.Rank.SPECIAL) {
-            return 30000;
+            return 40000;
         }
         else if (rank == FishData.Rank.COMMON) {
-            return 1000;
+            return 2000;
         }
         else {
             return 100;
